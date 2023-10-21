@@ -1,0 +1,29 @@
+<script>
+    function redirectToSurvey() {
+      // Generate a random number between 0 and 1
+      var randomNumber = Math.random();
+  
+      // Define the probabilities for each survey
+      var probabilities = [
+        { url: 'https://forms.gle/rnNGgwEq3YXtigC96', probability: 0.25 },  // Adjust probabilities as needed
+        { url: 'https://forms.gle/1TunUBYn8Vs6tF6y9', probability: 0.25 },
+        { url: 'https://forms.gle/yAN57Rkn5zR4zHNn8', probability: 0.25},
+        { url: 'https://forms.gle/bSr7epQnLZuVP1sGA', probability: 0.25 }
+      ];
+  
+      // Calculate the cumulative probabilities
+      var cumulativeProbability = 0;
+      for (var i = 0; i < probabilities.length; i++) {
+        cumulativeProbability += probabilities[i].probability;
+  
+        // Redirect to the corresponding survey if the random number falls within the range
+        if (randomNumber <= cumulativeProbability) {
+          window.location.href = probabilities[i].url;
+          break;
+        }
+      }
+    }
+    
+    // Call the redirect function when the page loads
+    window.onload = redirectToSurvey;
+  </script>
